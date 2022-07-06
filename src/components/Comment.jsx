@@ -49,7 +49,7 @@ function Form() {
         <div 
         className="date"
         data-name={"date"}
-        onChange={getDate}
+        onChange={handleChange}
         value={state.date}
         />
         <input
