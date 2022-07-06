@@ -28,20 +28,19 @@ function Form() {
       ...state,
       [e.target.dataset.name]: e.target.value,
     });
+    this.getDate();
   };
 
-   getDate() {
-    let date = { currentTime: new Date().toLocaleString() };
+  getDate = () => {
+    let date = new Date().toLocaleString();
+    this.setState({date});
+};
 
-    this.setState({
-      date: date
-    });
-  }
   return (
     <div className="comments">
-      <div className="comments__list">
+      <div className="comments__all">
           {comments.map((comment) => (
-            <div className="comments__column">
+            <div className="comments__col">
               <span>{comment}</span>
             </div>
           ))}
@@ -56,21 +55,21 @@ function Form() {
         <input
           data-name={"name"}
           placeholder="Ваше имя"
-          className="comments__input_small"
+          className="comments__input_name"
           onChange={handleChange}
           value={state.name}
         />
         <input
           data-name={"photo"}
           placeholder="Ваше фото"
-          className="comments__input_small"
+          className="comments__input_foto"
           onChange={handleChange}
           value={state.photo}
         />
         <textarea
           data-name={"comment"}
           placeholder="Ваш комментарий"
-          className="comments__input"
+          className="comments__text"
           onChange={handleChange}
           value={state.comment}
         ></textarea>
