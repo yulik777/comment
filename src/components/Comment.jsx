@@ -31,7 +31,7 @@ function Form() {
     this.getDate();
   };
 
-  getDate = () => {
+  let getDate = () => {
     let date = new Date().toLocaleString();
     this.setState({date});
 };
