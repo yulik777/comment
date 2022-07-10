@@ -11,10 +11,10 @@ function Form() {
     e.preventDefault();
 
     const arrayDate = [...date];
-    arrayComments.unshift(state.date);
-    setDate(arrayDate);
-
     const arrayComments = [...comments];
+    
+    arrayDate.unshift(state.date);
+    setDate(arrayDate);
     arrayComments.unshift(state.comment);
     setComments(arrayComments);
 
@@ -24,23 +24,24 @@ function Form() {
   };
 
   const handleChange = (e) => {
+   
     setState({
       ...state,
       [e.target.dataset.name]: e.target.value,
     });
-    this.getDate();
+    getDate();
   };
 
-  let getDate = () => {
+  const getDate = () => {
     let date = new Date().toLocaleString();
-    this.setState({date});
+    setState({date});
 };
 
   return (
     <div className="comments">
       <div className="comments__all">
           {comments.map((comment) => (
-            <div className="comments__col">
+            <div key={comment} className="comments__col" >
               <span>{comment}</span>
             </div>
           ))}
@@ -49,16 +50,16 @@ function Form() {
         <div 
         className="date"
         data-name={"date"}
-        onChange={handleChange}
-        value={state.date}
+       
         />
+        <span>{state.date}</span>
         <input
           data-name={"name"}
           placeholder="Ваше имя"
           className="comments__input_name"
-          onChange={handleChange}
-          value={state.name}
+          onChange={handleChange} 
         />
+    
         <input
           data-name={"photo"}
           placeholder="Ваше фото"
