@@ -13,7 +13,7 @@ function Form() {
     const arrayDate = [...date];
     const arrayComments = [...comments];
     
-    arrayDate.unshift(state.date);
+    arrayComments.unshift(state.date);
     setDate(arrayDate);
     arrayComments.unshift(state.comment);
     setComments(arrayComments);
