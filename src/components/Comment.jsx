@@ -4,23 +4,24 @@ import  './Comment.css';
 function Form() {
   const [state, setState] = useState("");
   const [comments, setComments] = useState([]);
-  const [names, setNames] = useState([]);
-  const [date, setDate] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const arrayDate = [...date];
-    const arrayComments = [...comments];
-    
-    arrayComments.unshift(state.date);
-    setDate(arrayDate);
-    arrayComments.unshift(state.comment);
-    setComments(arrayComments);
+    const arraycomments = [...comments,state]
+    setComments(arraycomments);
 
-    const arrayNames = [...names];
-    arrayNames.unshift(state.name);
-    setNames(arrayNames);
+    // const arrayDate = [...date];
+    // const arrayComments = [...comments];
+    
+    // arrayComments.unshift(state.date);
+    // setDate(arrayDate);
+    // arrayComments.unshift(state.comment);
+    // setComments(arrayComments);
+
+    // const arrayNames = [...names];
+    // arrayNames.unshift(state.name);
+    // setNames(arrayNames);
   };
 
   const handleChange = (e) => {
@@ -28,21 +29,18 @@ function Form() {
     setState({
       ...state,
       [e.target.dataset.name]: e.target.value,
+      date: new Date().toLocaleString(),
     });
-    getDate();
+   // getDate();
   };
 
-  const getDate = () => {
-    let date = new Date().toLocaleString();
-    setState({date});
-};
 
   return (
     <div className="comments">
       <div className="comments__all">
           {comments.map((comment) => (
-            <div key={comment} className="comments__col" >
-              <span>{comment}</span>
+            <div key={comment.name} className="comments__col" >
+              <span>{`${comment.name} написал ${comment.date} следующее: ${comment.comment}`}</span>
             </div>
           ))}
       </div>
@@ -52,7 +50,7 @@ function Form() {
         data-name={"date"}
        
         />
-        <span>{state.date}</span>
+       {/* <span>{state.date}</span>*/}
         <input
           data-name={"name"}
           placeholder="Ваше имя"
@@ -81,3 +79,6 @@ function Form() {
 }
 
 export default Form;
+
+//[...] - копіруем состояние которое уже было
+ //[...comments,state] - стейт это обьект с полями нейим коммент и дейт
